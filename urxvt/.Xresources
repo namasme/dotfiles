@@ -1,0 +1,12 @@
+URxvt.background: black
+URxvt.foreground: white
+
+URxvt.scrollBar: false
+
+URxvt.font: xft:Monospace:size=11:antialias=true
+URxvt.letterSpace: -1
+
+URxvt.perl-ext-common: default,matcher,resize-font
+
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
