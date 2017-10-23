@@ -32,6 +32,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# removes variable content so as to have tmux running in term emulators too
+# otherwise $TMUX affects the whole X session
+unset TMUX
+
 xsetroot -cursor_name left_ptr # sets cursor to pointer (not cross)
 xscreensaver -no-splash &  # starts xscreensaver daemon
 urxvtd -q -f -o  # starts rxvt-unicode daemon
