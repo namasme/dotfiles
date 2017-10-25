@@ -1,6 +1,10 @@
 URxvt.background: black
 URxvt.foreground: white
 
+URxvt.transparent: true
+URxvt.tintColor: white
+URxvt.shading: 20
+
 URxvt.scrollBar: false
 
 URxvt.font: xft:Monospace:size=11:antialias=true
