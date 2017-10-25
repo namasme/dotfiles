@@ -14,5 +14,3 @@
 ;; enable C-x C-n
 
 (put 'set-goal-column 'disabled nil)
-
-
