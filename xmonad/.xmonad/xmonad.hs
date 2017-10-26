@@ -20,8 +20,8 @@ main = do
 	, terminal = "urxvtc"
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -activate")
-        , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
-        , ((0, xK_Print), spawn "scrot")
+        , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s ~/Pictures/screenshots/%Y-%m-%d_%T.png")
+        , ((0, xK_Print), spawn "scrot ~/Pictures/screenshots/%Y-%m-%d_%T.png")
 	, ((mod4Mask, xK_p), spawn "dmenu_run -fn 'Droid Sans Mono-9'")
         ] `additionalKeysP`
         [ ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
