@@ -1,0 +1,15 @@
+[Unit]
+Description=Mopidy
+Documentation=https://www.mopidy.com/
+After=network.target
+
+[Service]
+Environment=STNORESTART=yes
+ExecStart=/usr/bin/mopidy
+Restart=on-failure
+RestartPreventExitStatus=1
+SuccessExitStatus=2
+RestartForceExitStatus=3 4
+
+[Install]
+WantedBy=default.target
