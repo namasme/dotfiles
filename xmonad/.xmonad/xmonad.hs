@@ -24,7 +24,7 @@ main = do
         , ((0, xK_Print), spawn "scrot ~/Pictures/screenshots/%Y-%m-%d_%T.png")
 	, ((mod4Mask, xK_p), spawn "dmenu_run -fn 'Droid Sans Mono-9'")
         ] `additionalKeysP`
-        [ ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
-        , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
-        , ("<XF86AudioMute>"       , spawn "amixer set Master toggle")
+        [ ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-mute 0 false; pactl set-sink-volume 0 +5%") -- TODO: this can go over 100% (bad quality)
+        , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-mute 0 false; pactl set-sink-volume 0 -5%")
+        , ("<XF86AudioMute>"       , spawn "pactl set-sink-mute 0 toggle")
         ]
