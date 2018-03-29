@@ -12,7 +12,7 @@ Config { font = "xft:Monospace:size=9::antialias=true"
                               ] 10
                     , Run Memory ["--template", "Memory: <usedratio>%"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
-		    , Run Wireless "wlp5s0" ["--template", "<essid> (<quality>%)"] 10
+		    , Run Wireless "wlan0" ["--template", "<essid> (<quality>%)"] 10
                     , Run Battery [ "--template" , "Battery: <left>% <acstatus> <leftvbar> (<timeleft>)"  
                                   , "--Low"      , "20"        -- units: %
                                   , "--High"     , "80"        -- units: %
