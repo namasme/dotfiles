@@ -149,3 +149,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source $HOME/.local/bin/virtualenvwrapper.sh
+
+# Install Ruby gems to ~/gems
+export GEM_HOME=$HOME/gems
+export PATH=$GEM_HOME/bin:$PATH
