@@ -3,9 +3,13 @@
 (require 'prelude-packages)
 
 (prelude-require-packages
- '(auctex
+ '(
+   auctex
    fireplace
    js2-mode
    rjsx-mode
-   smex)
+   smex
+   visual-regexp
+   visual-regexp-steroids
+   )
  )
