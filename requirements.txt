@@ -1,0 +1,7 @@
+zsh
+git
+emacs25-nox
+xmonad
+tmux
+xorg
+make
