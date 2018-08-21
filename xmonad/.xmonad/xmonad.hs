@@ -18,7 +18,7 @@ main = do
                         , ppTitle = xmobarColor "grey" "" . shorten 50
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
-	, terminal = "urxvtc"
+	, terminal = "st"
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -activate")
         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s ~/Pictures/screenshots/%Y-%m-%d_%T.png")
