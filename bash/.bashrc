@@ -144,3 +144,8 @@ xterm*|rxvt*)
 
 [[ $- != *i* ]] && return
 [[ -z "$TMUX" ]] && exec tmux
+
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source $HOME/.local/bin/virtualenvwrapper.sh
