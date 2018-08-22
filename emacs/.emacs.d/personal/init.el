@@ -20,14 +20,6 @@
 
 (put 'set-goal-column 'disabled nil)
 
-;; Coq's Proof General setup
-
-(load "~/.emacs.d/lisp/PG/generic/proof-site")
-
-;; Extend emacs' PATH to find flake8 executable
-
-(setq exec-path (append exec-path '("~/.local/bin/")))
-
 ;; Set web-mode markup indentation to 2 spaces
 
 (defun set-indentation-hook ()
