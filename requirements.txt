@@ -5,3 +5,4 @@ xmonad
 tmux
 xorg
 make
+fonts-powerline
