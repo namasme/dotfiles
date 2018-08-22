@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys, additionalKeysP)
@@ -12,7 +13,7 @@ main = do
     xmproc <- spawnPipe "xmobar ~/.xmobarrc"
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> (isFullscreen --> doFullFloat) <+> manageHook defaultConfig
-        , layoutHook = avoidStruts $ smartSpacing 5 $ layoutHook defaultConfig
+        , layoutHook = noBorders $ avoidStruts $ smartSpacing 5 $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "grey" "" . shorten 50
