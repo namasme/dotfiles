@@ -38,6 +38,5 @@ unset TMUX
 
 xsetroot -cursor_name left_ptr # sets cursor to pointer (not cross)
 xscreensaver -no-splash &  # starts xscreensaver daemon
-feh --bg-scale ~/Pictures/backgrounds/theredtower.jpg # sets "desktop" bg
-urxvtd -q -f -o  # starts rxvt-unicode daemon
-exec xmonad
+feh --bg-scale ~/.background # sets "desktop" bg
+xmonad
