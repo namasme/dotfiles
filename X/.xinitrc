@@ -38,5 +38,5 @@ unset TMUX
 
 xsetroot -cursor_name left_ptr # sets cursor to pointer (not cross)
 xscreensaver -no-splash &  # starts xscreensaver daemon
-feh --bg-scale ~/.background # sets "desktop" bg
+~/.fehbg # sets "desktop" bg
 xmonad
