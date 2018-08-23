@@ -8,3 +8,4 @@ make
 fonts-powerline
 scrot
 pulseaudio
+compton
