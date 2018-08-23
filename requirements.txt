@@ -7,3 +7,4 @@ xorg
 make
 fonts-powerline
 scrot
+pulseaudio
