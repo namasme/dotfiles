@@ -6,3 +6,4 @@ tmux
 xorg
 make
 fonts-powerline
+scrot
