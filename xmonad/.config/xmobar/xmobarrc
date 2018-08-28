@@ -1,0 +1,43 @@
+Config {
+         font = "xft:Monospace:size=12::antialias=true,Siji:size=10"
+       , bgColor = "black"
+       , fgColor = "white"
+       , position = Top
+       , lowerOnStart = True
+       , overrideRedirect = False
+       , iconRoot = "/home/ritaso/.config/xmobar"
+       , commands = [
+             Run Cpu [ "-L"      , "25"
+                     , "-H"      , "75"
+                     , "--normal", "yellow"
+                     , "--high"  , "red"
+                     , "--ppad"  , "3"
+                     , "--template", "<total>% <icon=cpu.xbm/>"
+                     ] 10
+           , Run Memory ["--template", "<usedratio>% <icon=mem.xbm/>", "--ppad", "3"] 10
+           , Run Date "%a %b %_d %l:%M" "date" 10
+           , Run Battery [ "--template" , "<left>% <acstatus>(<timeleft>)"  
+                         , "--Low"      , "30"        -- units: %
+                         , "--High"     , "70"        -- units: %
+                         , "--low"      , "darkred"
+                         , "--normal"   , "orange"
+                         , "--high"     , "green"
+                         , "--ppad"     , "3"
+                         
+                         , "--" -- battery specific options
+                                   -- discharging status
+                                   , "-o"       , ""
+                                   -- AC "on" status
+                                   , "-O" , "<fc=yellow>⚡</fc>"
+                                   -- charged status                           
+                                   , "-i"   , "⚡"
+                         ] 50
+           , Run Com "battery_indicator" ["--xmobar"] "battery_indicator" 50
+           , Run Com "volume_indicator" [] "volume" 10
+           , Run Com "wifi_indicator" [] "wifi" 50
+           , Run StdinReader
+         ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% } %date% { <action=`rofi -show windowcd -m -3 -xoffset -300 -yoffset 20 -width 40 -click-to-exit`></action> | %wifi% | <action=`volume --toggle-mute`>%volume%</action> | %battery_indicator% %battery% | %cpu% | %memory% "
+       }
