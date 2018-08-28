@@ -1,0 +1,95 @@
+#!/bin/bash
+
+DEFAULT_STEP=5
+
+__max(){
+    echo $(( $1 > $2 ? $1 : $2 ))
+}
+
+__min(){
+    echo $(( $1 < $2 ? $1 : $2 ))
+}
+
+__get_default_sink_name() {
+    pacmd stat | awk -F": " '/^Default sink name: /{print $2}'
+}
+
+__get_default_sink_is_muted(){
+    program='/^([ \t])+name: /{indefault = $2 == "<'$(__get_default_sink_name)'>"}
+             /^([ \t])+muted: yes/ && indefault { print "M"; exit }'
+    is_muted=$(pacmd list-sinks | awk "$program")
+
+    test -n "$is_muted"
+}
+
+__get_default_sink_volume(){
+    program='/^([ \t])+name: /{indefault = $2 == "<'$(__get_default_sink_name)'>"}
+             /^([ \t])+volume: / && indefault { print $5; exit }'
+    pacmd list-sinks | awk "$program" | sed 's/%//'
+}
+
+__set_default_sink_volume(){
+    pactl set-sink-volume $(__get_default_sink_name) $1%
+}
+
+__lower_volume(){
+    current_volume=$(__get_default_sink_volume)
+    new_volume=$(__max 0 $(( $current_volume - $1 )))
+
+    __set_default_sink_volume $new_volume
+}
+
+__raise_volume(){
+    current_volume=$(__get_default_sink_volume)
+    new_volume=$(__min 100 $(( $current_volume + $1 )))
+
+    __set_default_sink_volume $new_volume
+}
+
+__mute(){
+    pactl set-sink-mute $(__get_default_sink_name) 1
+}
+
+__unmute(){
+    pactl set-sink-mute $(__get_default_sink_name) 0
+}
+
+__toggle_mute(){
+    pactl set-sink-mute $(__get_default_sink_name) toggle
+}
+
+case $1 in
+    -G|--get)
+        if __get_default_sink_is_muted; then
+            echo "M"
+        else
+            echo $(__get_default_sink_volume)
+        fi
+        ;;
+    -S|--set)
+        __set_default_sink_volume $2
+        ;;
+    -U|--up)
+        if [ -z $2 ]; then
+            __raise_volume $DEFAULT_STEP
+        else
+            __raise_volume $2
+        fi
+        ;;
+    -D|--down)
+        if [ -z $2 ]; then
+            __lower_volume $DEFAULT_STEP
+        else
+            __lower_volume $2
+        fi
+        ;;
+    -M|--mute)
+        __mute
+        ;;
+    -N|--unmute)
+        __unmute
+        ;;
+    -T|--toggle-mute)
+        __toggle_mute
+        ;;
+esac

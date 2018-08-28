@@ -1,0 +1,29 @@
+#!/bin/bash
+
+MUTED_ICON="\ue04f"
+SPEAKER_ICONS=("\ue04e" "\ue050" "\ue05d")
+
+THRESHOLDS=(0 50 100)
+
+__calculate_icon(){
+    index=0
+
+    while [ $1 -gt ${THRESHOLDS[$index]} ]; do
+        index=$(( $index + 1 ))
+    done
+
+    echo ${SPEAKER_ICONS[$index]}
+}
+
+
+volume_level=$(volume -G)
+
+if [ "$volume_level" = "M" ]; then
+    icon="$MUTED_ICON"
+    detail="  M "
+else
+    icon=$(__calculate_icon "$volume_level")
+    detail=$(printf "%3s" $volume_level)%%
+fi
+
+printf "$detail $icon"

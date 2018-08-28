@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# Credit: https://github.com/richoH/dotfiles/blob/master/bin/battery
+
+source battery_info.sh
+
+HEART_FULL="♥"
+HEART_EMPTY="♡"
+[ -z "$NUM_HEARTS" ] &&
+    NUM_HEARTS=5
+
+__build_hearts_string(){
+    perc=0
+    inc=$((100 / $NUM_HEARTS))
+    output=()
+
+    for i in `seq $NUM_HEARTS`; do
+        if [ $perc -lt $1 ]; then
+            output+=($HEART_FULL)
+        else
+            output+=($HEART_EMPTY)
+        fi
+        perc=$(( $perc + $inc ))
+    done
+
+    echo ${output[*]}
+}
+
+__xmobar_colors(){
+    echo "<fc=$1>$2</fc>"
+}
+
+__vt_colors(){
+    case $1 in
+        black)
+            code=0
+            ;;
+        red) 
+            code=1
+            ;;
+        green) 
+            code=2
+            ;;
+        yellow|orange) 
+            code=3
+            ;;
+        blue) 
+            code=4
+            ;;
+        magenta) 
+            code=5
+            ;;
+        cyan) 
+            code=6
+            ;;
+        gray) 
+            code=7
+            ;;
+    esac
+
+    color_start="\e[3${code}m"
+    color_end="\e[0m"
+
+    echo "${color_start}$2${color_end}"
+}
+
+LOW=30
+HIGH=70
+
+if [ $BATTERY_LEFT -le $LOW ]; then
+    color=red
+elif [ $BATTERY_LEFT -ge $HIGH ]; then
+    color=green
+else
+    color=orange
+fi
+
+text=$(__build_hearts_string $BATTERY_LEFT)
+
+case $1 in
+    -x|--xmobar)
+        echo $(__xmobar_colors $color "$text")
+            ;;
+    *)
+        echo -e $(__vt_colors $color "$text")
+        ;;
+esac        
+

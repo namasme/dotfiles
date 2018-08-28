@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source wifi.sh
+
+WIFI_ICONS=(   )
+THRESHOLDS=(0 33 66 100)
+
+index=0
+
+while [ $WIFI_SIGNAL_STRENGTH -gt ${THRESHOLDS[$index]} ]; do
+    index=$(( $index + 1 ))
+done
+
+icon=${WIFI_ICONS[$index]}
+echo "$WIFI_NETWORK_NAME $icon"
