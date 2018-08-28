@@ -14,3 +14,13 @@ Fatal server error:
 when called from a tmux session, but not from a tty.
 
 -> Edit `/etc/X11/Xwrapper.config` and set `allowed_users=anybody`
+
+# Fonts
+
+## Using bitmap icons for status bar
+
+After installing [siji](https://github.com/stark/siji), you need to run
+
+`# dpkg-reconfigure fontconfig fontconfig-config`
+
+and answer **YES** to the third question (bitmap fonts are disabled by default)
