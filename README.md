@@ -24,3 +24,12 @@ After installing [siji](https://github.com/stark/siji), you need to run
 `# dpkg-reconfigure fontconfig fontconfig-config`
 
 and answer **YES** to the third question (bitmap fonts are disabled by default)
+
+## Configure TTY font to be able to see Powerline glyphs
+
+Don't use `dpkg-reconfigure console-setup`. Download [Terminess PSF files](https://github.com/powerline/fonts/tree/master/Terminus/PSF),
+put them somewhere (e.g. `/usr/share/consolefonts/`) and edit `/etc/default/console-setup` setting `FONT=/absolute/path/to/font.psf.gz`.
+
+Comment the `FONTFACE` et al. lines.
+
+Run `setupcon`.

@@ -1,0 +1,10 @@
+{
+    "name": "Default",
+    "groups": {
+        "player":          { "fg": "gray0", "bg": "white", "attrs": [] },
+        "player_fallback": { "fg": "gray0", "bg": "white", "attrs": [] },
+        "player_play":     { "fg": "gray0", "bg": "white", "attrs": [] },
+        "player_pause":    { "fg": "gray0", "bg": "white", "attrs": [] },
+        "player_stop":     { "fg": "gray0", "bg": "white", "attrs": [] }
+    }
+}

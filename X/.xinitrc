@@ -44,3 +44,4 @@ xsetroot -cursor_name left_ptr # sets cursor to pointer (not cross)
 xscreensaver -no-splash &  # starts xscreensaver daemon
 ~/.fehbg # sets "desktop" bg
 xmonad
+compton

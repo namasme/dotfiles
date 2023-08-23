@@ -21,3 +21,7 @@ sudo rm /etc/default/grub
 cd ~/dotfiles/
 sudo stow --target=/etc/default --stow grub
 sudo update-grub
+
+# Customize touchpad (natural scroll & tap)
+
+sudo stow --target=/etc/X11 --stow touchpad

@@ -1,0 +1,2 @@
+sudo ln -s /home/ritaso/.config/eduroam/wicd-template /etc/wicd/encryption/templates/eduroam
+echo eduroam >> /etc/wicd/encryption/templates/active

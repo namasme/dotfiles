@@ -27,3 +27,16 @@
 )
 
 (add-hook 'web-mode-hook 'set-indentation-hook)
+
+;; Disable ace-window looking in all windows (just current frame)
+
+(setq aw-scope 'frame)
+
+;; Enable zone mode when idle
+
+;; (require 'zone)
+;; (zone-when-idle 120)
+
+;; Enable local compilation of TeX files
+
+(setq-default TeX-master nil)
